@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "9G4Wzc71iCXXBDvXlatlqfuYDtIjhZykn/73ERk9dcSW+rW2Vixg2vkYjhLDmWglhoYM5T+WKsN6U5OuFik1MQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Knar\\source\\repos\\CheckmateLibrary\\CheckmateLibrary.csproj",
+=======
+  "dgSpecHash": "ifNOfn/3UuGZpRGxwc1FdH+T7tmP0DHEUq3rqUYm7yXCjmBdF+qquAUbOc3k+5g8pc8+o7qIlShwlWw7yAZdxQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Knar\\source\\repos\\Checkmate\\Checkmate.csproj",
+>>>>>>> 2cf38d176f2e5c9a89fe2d2ebfd87b9e52c93b5c
   "expectedPackageFiles": [],
   "logs": []
 }

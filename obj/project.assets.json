@@ -1,11 +1,38 @@
 {
   "version": 3,
   "targets": {
+<<<<<<< HEAD
     "net7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
     "net7.0": []
+=======
+    "net7.0": {
+      "CheckmateLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/CheckmateLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CheckmateLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CheckmateLibrary/1.0.0": {
+      "type": "project",
+      "path": "../CheckmateLibrary/CheckmateLibrary.csproj",
+      "msbuildProject": "../CheckmateLibrary/CheckmateLibrary.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "CheckmateLibrary >= 1.0.0"
+    ]
+>>>>>>> 2cf38d176f2e5c9a89fe2d2ebfd87b9e52c93b5c
   },
   "packageFolders": {
     "C:\\Users\\Knar\\.nuget\\packages\\": {}
@@ -13,11 +40,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Knar\\source\\repos\\CheckmateLibrary\\CheckmateLibrary.csproj",
       "projectName": "CheckmateLibrary",
       "projectPath": "C:\\Users\\Knar\\source\\repos\\CheckmateLibrary\\CheckmateLibrary.csproj",
       "packagesPath": "C:\\Users\\Knar\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Knar\\source\\repos\\CheckmateLibrary\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Knar\\source\\repos\\Checkmate\\Checkmate.csproj",
+      "projectName": "Checkmate",
+      "projectPath": "C:\\Users\\Knar\\source\\repos\\Checkmate\\Checkmate.csproj",
+      "packagesPath": "C:\\Users\\Knar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Knar\\source\\repos\\Checkmate\\obj\\",
+>>>>>>> 2cf38d176f2e5c9a89fe2d2ebfd87b9e52c93b5c
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Knar\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -33,7 +68,15 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+<<<<<<< HEAD
           "projectReferences": {}
+=======
+          "projectReferences": {
+            "C:\\Users\\Knar\\source\\repos\\CheckmateLibrary\\CheckmateLibrary.csproj": {
+              "projectPath": "C:\\Users\\Knar\\source\\repos\\CheckmateLibrary\\CheckmateLibrary.csproj"
+            }
+          }
+>>>>>>> 2cf38d176f2e5c9a89fe2d2ebfd87b9e52c93b5c
         }
       },
       "warningProperties": {
