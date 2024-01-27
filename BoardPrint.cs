@@ -128,31 +128,10 @@ namespace Checkmate
             }
             return true;
         }
-    
 
-    public static List<string> GetValidQueenMoves(char[,] chessboard, Coordinates queenPosition)
-    {
-        List<string> validMoves = new List<string>();
 
-        // Extract row and column from the current position
-        char column = (char)queenPosition.Column;
-        char row = (char)queenPosition.Row;
 
-        // Check all possible moves in horizontal, vertical, and diagonal directions
-        for (char newColumn = 'A'; newColumn <= 'H'; newColumn++)
-        {
-            for (int newRow = 1; newRow <= 8; newRow++)
-            {
-                if (Queen.IsValidMove( queenPosition , new Coordinates(newColumn,newRow)))
-                {
-                    validMoves.Add($"{newColumn}{newRow}");
-                }
-            }
-        }
 
-        return validMoves;
+
     }
-
-
-
 }
