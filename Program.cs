@@ -1,7 +1,4 @@
-﻿
-using Microsoft.Extensions.Configuration;
-
-namespace Checkmate;
+﻿namespace Checkmate;
 
 internal class Program
 {

@@ -1,9 +1,10 @@
 ﻿using CheckmateLibrary;
-using CheckmateLibrary.Structs;
 using CheckmateLibrary.Figures;
-namespace Checkmate
-{
-    internal class BoardPrint
+using CheckmateLibrary.Structs;
+
+namespace Checkmate;
+
+    public class BoardPrint
     {
         public static char[,] InitializeChessboard()
         {
@@ -129,9 +130,118 @@ namespace Checkmate
             return true;
         }
 
+        public static List<string> GetCoveredPositions(char[,] chessboard)
+        {
+            List<string> coveredPositions = new List<string>();
+
+            // Get covered positions by white queen
+            foreach (var position in GetAllWhiteQueenMoves(chessboard))
+            {
+                if (!coveredPositions.Contains(position))
+                {
+                    coveredPositions.Add(position);
+                }
+            }
+
+            // Get covered positions by white king
+            foreach (var position in GetAllWhiteKingMoves(chessboard))
+            {
+                if (!coveredPositions.Contains(position))
+                {
+                    coveredPositions.Add(position);
+                }
+            }
+
+            // Get covered positions by white rooks
+            foreach (var position in GetAllWhiteRookMoves(chessboard))
+            {
+                if (!coveredPositions.Contains(position))
+                {
+                    coveredPositions.Add(position);
+                }
+            }
+
+            return coveredPositions;
+        }
+
+        private static List<string> GetAllWhiteQueenMoves(char[,] chessboard)
+        {
+            List<string> moves = new List<string>();
+
+            // Find the position of the white queen
+            Coordinates queenPosition = FindPiecePosition(chessboard, Figure.Queen, FigureColor.White);
+
+            // Get valid queen moves on an empty board
+            moves.AddRange(Queen.GetValidQueenMoves(chessboard, queenPosition));
+
+            return moves;
+        }
+
+        private static List<string> GetAllWhiteKingMoves(char[,] chessboard)
+        {
+            List<string> moves = new List<string>();
+
+            // Find the position of the white king
+            Coordinates kingPosition = FindPiecePosition(chessboard, Figure.King, FigureColor.White);
+
+            // Get valid king moves on an empty board
+            moves.AddRange(King.GetValidKingMoves(chessboard, kingPosition, FigureColor.White));
+
+            return moves;
+        }
+
+        private static List<string> GetAllWhiteRookMoves(char[,] chessboard)
+        {
+            List<string> moves = new List<string>();
+
+            // Find the positions of the white rooks
+            List<Coordinates> rookPositions = FindAllPiecePositions(chessboard, Figure.Rook, FigureColor.White);
+
+            // Get valid rook moves on an empty board for each rook
+            foreach (var position in rookPositions)
+            {
+                moves.AddRange(Rook.GetValidRookMoves(chessboard, position));
+            }
+
+            return moves;
+        }
+
+        private static Coordinates FindPiecePosition(char[,] chessboard, Figure piece, FigureColor color)
+        {
+            for (int i = 0; i < chessboard.GetLength(0); i++)
+            {
+                for (int j = 0; j < chessboard.GetLength(1); j++)
+                {
+                    if (chessboard[i, j] == GetSymbol.GetSymbolChar(piece, color))
+                    {
+                        return new Coordinates(i, j);
+                    }
+                }
+            }
+
+            // If the piece is not found, return an invalid position
+            return new Coordinates(-1, -1);
+        }
+
+        private static List<Coordinates> FindAllPiecePositions(char[,] chessboard, Figure piece, FigureColor color)
+        {
+            List<Coordinates> positions = new List<Coordinates>();
+
+            for (int i = 0; i < chessboard.GetLength(0); i++)
+            {
+                for (int j = 0; j < chessboard.GetLength(1); j++)
+                {
+                    if (chessboard[i, j] == GetSymbol.GetSymbolChar(piece, color))
+                    {
+                        positions.Add(new Coordinates(i, j));
+                    }
+                }
+            }
+
+            return positions;
+        }
 
 
 
 
     }
-}
