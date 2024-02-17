@@ -69,18 +69,25 @@ public class BoardPrint
     /// add all pieces on chessboard
     /// </summary>
     /// <param name="chessboard"></param>
-    public static void SetPieces(char[,] chessboard)
+    public static char [,]  SetPieces(char[,] chessboard)
     {
         PlacePiece(Figure.King, FigureColor.Black, chessboard);
         PlacePiece(Figure.King, FigureColor.White, chessboard);
         PlacePiece(Figure.Queen, FigureColor.White, chessboard);
         PlacePiece(Figure.Rook, FigureColor.White, chessboard);
         PlacePiece(Figure.Rook, FigureColor.White, chessboard);
-        /* 
-        if (!AreFiguresOverlapping(chessboard))
-        {
-           Console.WriteLine("Some error") ;
-        } */
+
+        if (AreFiguresOverlapping(chessboard))
+        {   //no need this, it is checked already in AreFiguresOverlapping method
+            //Console.ForegroundColor = ConsoleColor.Red;
+            // Console.WriteLine("Some figures are overlapping. Please re-enter positions.");
+            // Console.ResetColor();
+            SetPieces(chessboard);
+            return chessboard;
+        }
+
+        PrintChessBoard(chessboard);
+        return chessboard;
     }
 
     /// <summary>
@@ -102,8 +109,8 @@ public class BoardPrint
                 // Check if the position is already occupied by another piece
                 if (occupiedPositions.Contains(currentPiece))
                 {
-                    Coordinates position = new Coordinates(i, j);
-                    Coordinates.PrintError($"Error: Position {position} is occupied by more than one piece.");
+                    //Coordinates position = new Coordinates(i, j);
+                    //Coordinates.PrintError($"Error: Position {position} is occupied by more than one piece.");
                     return false;
                 }
                 occupiedPositions.Add(currentPiece);
@@ -120,15 +127,33 @@ public class BoardPrint
     /// <param name="chessboard"></param>
     private static void PlacePiece(Figure piece, FigureColor color, char[,] chessboard)
     {
-        while (true)
         {
-            Console.Write($"\nEnter the position for the {color} {piece} (e.g., A8): ");
-            string position = Console.ReadLine();
-            if (PlaceSymbolOnBoard(position, piece, color, chessboard))
+            while (true)
             {
-                break;
+                Console.Write($"Enter the position for the {color} {piece} (e.g., A8): ");
+                string position = Console.ReadLine();
+                Coordinates coordinates = new Coordinates(position);
+
+                // Check if the entered position is valid
+                if (!Coordinates.IsValidCoordinates(coordinates))
+                {
+                    Coordinates.PrintError("Invalid position. Please enter a valid position.");
+                    continue;
+                }
+
+                // Check if the entered position is already occupied
+                if (chessboard[coordinates.Row, coordinates.Column] != ' ')
+                {
+                    Coordinates.PrintError("Position is already occupied. Please choose a different position.");
+                    continue;
+                }
+
+                // Place the figure on the chessboard
+                chessboard[coordinates.Row, coordinates.Column] = GetSymbol.GetSymbolChar(piece, color);
+                break; // Exit the loop if the figure is placed successfully
             }
         }
+
     }
 
 
@@ -168,57 +193,57 @@ public class BoardPrint
         return true;
     }
 
-    /// <summary>
-    /// get covered positions of the white team
-    /// </summary>
-    /// <param name="chessboard"></param>
-    /// <returns></returns>
-    public static List<Coordinates> GetCoveredPositions(char[,] chessboard)
-    {
-        List<Coordinates> coveredPositions = new List<Coordinates>();
-        Queen queen = new Queen();
-        King king = new King();
-        Rook rookFirst = new Rook();
-        Rook rookSecond = new Rook(); 
+    ///// <summary>
+    ///// NOT WORKED,IGNORE
+    ///// </summary>
+    ///// <param name="chessboard"></param>
+    ///// <returns></returns>
+    //public List<Coordinates> GetCoveredPositions(char[,] chessboard)
+    //{
+    //    List<Coordinates> coveredPositions = new List<Coordinates>();
+    //    Queen queen = new Queen();
+    //    King king = new King();
+    //    Rook rookFirst = new Rook();
+    //    Rook rookSecond = new Rook();
 
-        // Get covered positions by white queen
-        foreach (var position in queen.GetEmptyChessboardValidMoves( chessboard,  queenPosition,  color))
-        {
-            if (!coveredPositions.Contains(position))
-            {
-                coveredPositions.Add(position);
-            }
-        }
+    //    // Get covered positions by white queen
+    //    foreach (var position in queen.GetEmptyChessboardValidMoves(chessboard, queenPosition, color))
+    //    {
+    //        if (!coveredPositions.Contains(position))
+    //        {
+    //            coveredPositions.Add(position);
+    //        }
+    //    }
 
-        // Get covered positions by white king
-        foreach (var position in king.GetEmptyChessboardValidMoves(chessboard, kingPosition, color))
-        {
-            if (!coveredPositions.Contains(position))
-            {
-                coveredPositions.Add(position);
-            }
-        }
+    //    // Get covered positions by white king
+    //    foreach (var position in king.GetEmptyChessboardValidMoves(chessboard, kingPosition, color))
+    //    {
+    //        if (!coveredPositions.Contains(position))
+    //        {
+    //            coveredPositions.Add(position);
+    //        }
+    //    }
 
-        // Get covered positions by white rooks
-        foreach (var position in rookFirst.GetEmptyChessboardValidMoves(chessboard, rookSecondPosition, color))
-        {
-            if (!coveredPositions.Contains(position))
-            {
-                coveredPositions.Add(position);
-            }
-        }
+    //    // Get covered positions by white rooks
+    //    foreach (var position in rookFirst.GetEmptyChessboardValidMoves(chessboard, rookSecondPosition, color))
+    //    {
+    //        if (!coveredPositions.Contains(position))
+    //        {
+    //            coveredPositions.Add(position);
+    //        }
+    //    }
 
-        foreach (var position in rookSecond.GetEmptyChessboardValidMoves(chessboard, rookSecondPosition, color))
-        {
-            if (!coveredPositions.Contains(position))
-            {
-                coveredPositions.Add(position);
-            }
-        }
+    //    foreach (var position in rookSecond.GetEmptyChessboardValidMoves(chessboard, rookSecondPosition, color))
+    //    {
+    //        if (!coveredPositions.Contains(position))
+    //        {
+    //            coveredPositions.Add(position);
+    //        }
+    //    }
 
 
-        return coveredPositions;
-    }
+    //    return coveredPositions;
+    //}
 
     //private static List<string> GetAllWhiteQueenMoves(char[,] chessboard)
     //{

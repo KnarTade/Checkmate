@@ -22,6 +22,7 @@ internal class Program
         char[,] chessboard = BoardPrint.InitializeChessboard();
         BoardPrint.PrintChessBoard(chessboard);
         BoardPrint.SetPieces(chessboard);
-        BoardPrint.PrintChessBoard(chessboard);
+        char[,] chessboardWithFigures = BoardPrint.SetPieces(chessboard);
+        //BoardPrint.PrintChessBoard(chessboard);
     }
 }

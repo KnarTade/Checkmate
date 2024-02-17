@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Checkmate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf50b7cc3b94f11309727816ea3e748e7d8f4aec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1fff97ba2e9ef98678c1836534f6b12e38dd143")]
 [assembly: System.Reflection.AssemblyProductAttribute("Checkmate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Checkmate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
